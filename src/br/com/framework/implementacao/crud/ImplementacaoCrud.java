@@ -37,6 +37,7 @@ public class ImplementacaoCrud<T> implements InterfaceCrud<T> {
 	@Autowired
 	private SimpleJdbcTemplateImpl simpleJdbcTemplateImpl;
 
+	@SuppressWarnings("unused")
 	private SimpleJdbcTemplate getSimpleJdbcTemplateImpl() {
 		return simpleJdbcTemplateImpl;
 
@@ -78,6 +79,7 @@ public class ImplementacaoCrud<T> implements InterfaceCrud<T> {
 		executeFlushSession();
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public T merge(T obj) throws Exception {
 		validaSessionFactory();
@@ -93,6 +95,7 @@ public class ImplementacaoCrud<T> implements InterfaceCrud<T> {
 		StringBuilder query = new StringBuilder();
 		query.append(" select distinct(entity) from ").append(entidade.getSimpleName()).append(" entity ");
 
+		@SuppressWarnings("unchecked")
 		List<T> lista = sessionFactory.getCurrentSession().createQuery(query.toString()).list();
 
 		return lista;
@@ -108,10 +111,12 @@ public class ImplementacaoCrud<T> implements InterfaceCrud<T> {
 	@Override
 	public T findByPorId(Class<T> entidade, Long id) throws Exception {
 		validaSessionFactory();
+		@SuppressWarnings("unchecked")
 		T obj = (T) sessionFactory.getCurrentSession().load(getClass(), id);
 		return obj;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<T> findListByQueryDinamica(String s) throws Exception {
 		validaSessionFactory();
@@ -199,6 +204,7 @@ public class ImplementacaoCrud<T> implements InterfaceCrud<T> {
 	 * @return List<T>
 	 * @throws Exception
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<T> findListByQueryDinamica(String query, int iniciaNoRegistro,
 			int maximoResultado) throws Exception {
@@ -222,10 +228,12 @@ public class ImplementacaoCrud<T> implements InterfaceCrud<T> {
 		}
 	}
 
+	@SuppressWarnings("unused")
 	private void commitProcessoAjax() {
 		sessionFactory.getCurrentSession().beginTransaction().commit();
 	}
 
+	@SuppressWarnings("unused")
 	private void rollBackProcessoAjax() {
 		sessionFactory.getCurrentSession().beginTransaction().rollback();
 	}
@@ -241,6 +249,7 @@ public class ImplementacaoCrud<T> implements InterfaceCrud<T> {
 	public List<Object[]> getListSQLDinamicaArray(String sql) throws Exception {
 		validaSessionFactory();
 		
+		@SuppressWarnings("unchecked")
 		List<Object[]> lista = (List<Object[]>) sessionFactory.getCurrentSession().createSQLQuery(sql).list();
 		return lista;		
 	}

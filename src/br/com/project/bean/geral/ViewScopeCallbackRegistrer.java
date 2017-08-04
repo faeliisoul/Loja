@@ -30,6 +30,7 @@ public class ViewScopeCallbackRegistrer implements ViewMapListener {
 			
 			PreDestroyViewMapEvent viewMapEvent = (PreDestroyViewMapEvent) event;
 			UIViewRoot viewRoot = (UIViewRoot) viewMapEvent.getComponent();
+			@SuppressWarnings("unchecked")
 			Map<String, Runnable> callbaks = (Map<String, Runnable>) viewRoot
 					.getViewMap().get(ViewScope.VIEW_SCOPE_CALLBACKS);
 			
