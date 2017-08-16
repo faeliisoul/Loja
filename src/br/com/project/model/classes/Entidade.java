@@ -20,6 +20,14 @@ public class Entidade implements Serializable {
 
 	private String ent_senha;
 
+	private boolean ent_inativo = false;
+
+
+
+	public boolean getEnt_inativo() {
+		return ent_inativo;
+	}
+
 	public void setEnt_login(String ent_login) {
 		this.ent_login = ent_login;
 	}
